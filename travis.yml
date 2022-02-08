@@ -1,0 +1,6 @@
+language: bash
+
+# Create certificates
+- ./create-certificates.sh
+
+# TODO add more functions as necessary
