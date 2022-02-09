@@ -32,8 +32,10 @@
 *.app
 
 ### My ignores ###
-# Exclude Folders
-certs
+# Excluded Folders
+utopia-server-mb
+certs/server_ca
+certs/root_ca
 env
 out
 venv
