@@ -3,9 +3,9 @@ This is the core repository that MUST be downloaded in order to create
 a proper environment for the utopia-server and its micro-services.
 
 #### Table of Contents
-- [Environment](environment)
-- [Install](install)
-- [Build & Run](build-run)
+- [Environment](#environment)
+- [Install](#install)
+- [Build & Run](#build-run)
 
 ## Environment
 ### Create Root and Server CA certificates
