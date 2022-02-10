@@ -7,4 +7,4 @@
 __docker_img="utopia-dev"
 
 # Mounts local current working directory to /home/utopia in the container
-docker run -it -v "${PWD}":/home/utopia "${__docker_img}"
+docker run -ditp 8080:8080 "${__docker_img}" /home/utopia/server/Bin/server.exe

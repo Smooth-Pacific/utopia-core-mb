@@ -45,13 +45,28 @@ RUN chsh -s /bin/zsh $(whoami)
 # Create CA-certificates
 RUN update-ca-certificates
 
-# Create utopia user && dir
+# Create Utopia user && dir
 ENV HOME=/home/utopia
 RUN useradd -ms /bin/zsh utopia
-USER utopia
 WORKDIR /home/utopia
 
-# Copy profile
-COPY misc/.profile /root/.profile
-COPY misc/.vimrc /root/.vimrc
-COPY misc/.zshrc /root/.zshrc
+# Copy config files
+COPY misc/.profile /home/utopia/.profile
+COPY misc/.vimrc /home/utopia/.vimrc
+COPY misc/.zshrc /home/utopia/.zshrc
+
+# Get & install Utopia Server
+RUN git clone --recursive https://www.github.com/Smooth-Pacific/utopia-server-mb.git /home/utopia/server
+RUN cd /home/utopia/server && \
+    cd 3rd-party/libhttpserver && \
+    ./bootstrap && \
+    mkdir -p build && \
+    cd build && \
+    ../configure && \
+    make && \
+    make install && \
+    cd ../../.. && \
+    make
+
+# Set user
+USER utopia
