@@ -7,6 +7,12 @@ a proper environment for the utopia-server and its micro-services.
 - [Install](#install)
 - [Build & Run](#build-run)
 
+## Initial Setup
+### Enable Docker IPV6 support
+```bash
+docker network create --ipv6 --subnet="2001:db8:1::/64" --gateway="2001:db8:1::1" mynetv6-1
+```
+
 ## Environment
 ### Create Root and Server CA certificates
 These scripts will automatically create certificates and keys for local-host
@@ -36,8 +42,10 @@ After the project is built, we can run the web server by running the binary in t
 We can test the server by opening a new terminal, attaching to the container, and running `curl 'https://172.17.0.2:8080/helloworld'`
 ```
 # in a new terminal
-curl -v 'https://127.0.0.1:8080'
+curl -v --digest -u username:password https://127.0.0.1:8080/
+# curl -v --digest -u username:password https://0:0:0:0:0:0:0:1:8080/ # uncomment for ipv6
 ```
+
 The command should output something like this in the very last line:
 ```
 Testing.
